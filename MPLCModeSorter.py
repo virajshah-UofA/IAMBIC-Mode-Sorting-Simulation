@@ -10,7 +10,7 @@ class MPLCModeSorter:
         self.planeDist = planeDist
 
         self.phaseMasks = None
-        self.initialPhaseMasks()
+        self.initializePhaseMasks()
 
     def getXYCoords(self):
         return self.simX, self.simY
