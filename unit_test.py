@@ -8,7 +8,9 @@ if __name__ == "__main__":
     simParams = {'wavelength': 1550e-9,
                  'numModes': 5,
                  'numPixels': (4, 4),
-                 'pixelSize': 10e-6}
+                 'pixelSize': 10e-6,
+                 'numPhaseMasks': 7,
+                 'planeDist': 25.4e-3}
     wfs = WFMSimulation(**simParams)
     print(wfs.getSimParams())
     simX, simY = wfs.getXYCoords()
@@ -30,7 +32,8 @@ if __name__ == "__main__":
     print('')
     print("------- Mode Object Tests -------")
     print('')
-    modeA = Mode(simX, simY)
+    # modeA = Mode(simX, simY)
+    modeA = wfs.getInOutModes()[0][0]
     numPixels = modeA.getNumPixels()
     modeAField = modeA.getField()
     print(modeAField)

@@ -1,5 +1,6 @@
 import numpy as np
 from Mode import Mode
+from MPLCModeSorter import MPLCModeSorter
 
 class WFMSimulation:
     def __init__(self, **kwargs):
@@ -19,6 +20,7 @@ class WFMSimulation:
         self.simY = None
         self.inModes = None
         self.outModes = None
+        self.modeSorter = None
 
     def createSimXYGrid(self):
         nPixX = self.numPixels[0]
@@ -33,7 +35,7 @@ class WFMSimulation:
         self.outModes = [Mode(self.simX, self.simY) for _ in range(self.numModes)]
 
     def createMPLCModeSorter(self):
-        pass
+        self.modeSorter = MPLCModeSorter(self.simX, self.simY, self.simParams['numPhaseMasks'], self.simParams['planeDist'])
 
    # ------- Define getter and setter functions -------
 
