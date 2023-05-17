@@ -27,8 +27,11 @@ class Mode:
     def getFieldPhase(self):
         return np.angle(self._eField)
 
-    def getFieldAmplitude(self):
+    def getFieldMagnitude(self):
         return np.absolute(self._eField)
+
+    def normalizeField(self):
+        self._eField /= np.amax(self.getFieldMagnitude())
 
     def plotFieldPhase(self, title=None, xlabel=None, ylabel=None):
         plt.figure()
@@ -43,10 +46,10 @@ class Mode:
         plt.show(block=False)
         return ax
 
-    def plotFieldAmplitude(self, title=None, xlabel=None, ylabel=None):
+    def plotFieldMagnitude(self, title=None, xlabel=None, ylabel=None):
         plt.figure()
         ax = plt.gca()
-        im = plt.imshow(self.getFieldAmplitude(), cmap='magma')
+        im = plt.imshow(self.getFieldMagnitude(), cmap='magma')
         im.set_extent([np.amin(self.simX), np.amax(self.simX), np.amin(self.simY), np.amax(self.simY)])
         plt.title("Field Amplitude") if not title else plt.title(title)
         plt.xlabel("X [m]") if not xlabel else plt.xlabel(xlabel)

@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 from WFMSimulation import WFMSimulation
-from Mode import Mode
 
 if __name__ == "__main__":
     print("------- WFMSimulation Object Tests -------")
@@ -18,7 +17,9 @@ if __name__ == "__main__":
     print('')
     print(simY)
 
-    # Everything is pass by value in Python, but I'm just checking memory location
+    # I'm just checking memory location, but the names are bound to an array. "Pass by object reference."
+    # https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/
+    # https://stackoverflow.com/questions/13530998/are-python-variables-pointers-or-else-what-are-they
     print(wfs.inModes)
 
     inModes = wfs.getInOutModes()[0]
@@ -38,18 +39,29 @@ if __name__ == "__main__":
     modeAField = modeA.getField()
     print(modeAField)
     ax1 = modeA.plotFieldPhase()
-    modeA.plotFieldAmplitude()
+    modeA.plotFieldMagnitude()
     counter = 0
     for x in range(numPixels[0]):
         for y in range(numPixels[1]):
             modeAField[x][y] += complex(counter, (100-counter))
             counter += 1
     print(modeAField)
+    modeA.updateField(modeAField) # unncessary here becuase array edited in place, but always do to ensure array change has propagated
     ax2 = modeA.plotFieldPhase(title="Updated Field Phase", xlabel="Updated X", ylabel="Updated Y")
-    modeA.plotFieldAmplitude(title="Updated Field Amplitude", xlabel="Updated X", ylabel="Updated Y")
+    modeA.plotFieldMagnitude(title="Updated Field Amplitude", xlabel="Updated X", ylabel="Updated Y")
     print(modeA)
+    print(modeA.getFieldMagnitude())
+    print(modeA.getFieldPhase())
 
     print(wfs.getInOutModes()[0])
-    wfs.updateInOutModes([modeA] + inModes[1:], outModes)
+    wfs.updateInOutModes([modeA] + inModes[1:], outModes) # again, unncessary here because array edited in place, but always do to ensure array change has propagated
     print(wfs.getInOutModes()[0])
+
+    modeA.normalizeField()
+    modeA.plotFieldPhase(title="(Normalized) Field Phase", xlabel="Updated X", ylabel="Updated Y")
+    modeA.plotFieldMagnitude(title="Normalized Field Amplitude", xlabel="Updated X", ylabel="Updated Y")
+    print(modeA.getField())
+    print(modeA.getFieldMagnitude())
+    print(modeA.getFieldPhase())
+
     plt.show() # keep plotting windows open
