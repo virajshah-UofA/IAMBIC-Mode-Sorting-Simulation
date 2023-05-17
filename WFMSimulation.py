@@ -52,3 +52,10 @@ class WFMSimulation:
         self.inModes = inModes
         self.outModes = outModes
         return 0
+
+    def getMPLCModeSorter(self):
+        return self.modeSorter
+
+    def updateMPLCModeSorter(self, modeSorter):
+        self.modeSorter = modeSorter
+        return 0
