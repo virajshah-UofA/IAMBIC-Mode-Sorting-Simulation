@@ -1,12 +1,14 @@
 import matplotlib.pyplot as plt
 from WFMSimulation import WFMSimulation
+from FreeSpaceProp import freeSpacePropagation
+import numpy as np
 
 def objectChecks():
     print("------- WFMSimulation Object Tests -------")
     print('')
     simParams = {'wavelength': 1550e-9,
                  'numModes': 5,
-                 'numPixels': (4, 4),
+                 'numPixels': (4, 7),
                  'pixelSize': 10e-6,
                  'numPhaseMasks': 3,
                  'planeDist': 25.4e-3}
@@ -91,5 +93,23 @@ def objectChecks():
 
     plt.show() # keep plotting windows open
 
+def freespacepropChecks():
+    print('')
+    print("------- Free Space Propagation Tests -------")
+    print('')
+    simParams = {'wavelength': 1550e-9,
+                 'numModes': 5,
+                 'numPixels': (4, 7),
+                 'pixelSize': 10e-6,
+                 'numPhaseMasks': 3,
+                 'planeDist': 25.4e-3}
+    wfs = WFMSimulation(**simParams)
+    simX, simY = wfs.getXYCoords()
+
+    initialField = np.ones(simParams['numPixels'])
+    propagatedField = freeSpacePropagation(initialField, simX, simY, simParams['planeDist'], simParams['wavelength'])
+    print(propagatedField)
+
 if __name__ == "__main__":
-    objectChecks()
+    # objectChecks()
+    freespacepropChecks()

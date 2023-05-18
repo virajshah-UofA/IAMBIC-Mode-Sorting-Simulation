@@ -1,5 +1,5 @@
 # To Do List
-- Free space propagation and fourier transform library
+- Fix x and y coordinates on plotting (or elsewhere) in all classes
 - wavefront matching algo
 - later: iterations, wavefront matching algo (in run verify gridsize is the same across the board),
 - simulation complete flag, transfer matrix, SVD (IL and MDL) calcs, graphing, save plot functions/decorator
