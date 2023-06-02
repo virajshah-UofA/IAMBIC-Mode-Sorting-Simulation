@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from WFMSimulation import WFMSimulation
-from FreeSpaceProp import freeSpacePropagation
+from FreeSpaceProp import createFreeSpacePropTransferFunc
 from ModeFieldGenerator import generateGaussianModeFieldSpot
 import numpy as np
 
@@ -108,7 +108,8 @@ def freespacepropChecks():
     simX, simY = wfs.getXYCoords()
 
     initialField = np.ones(simParams['numPixels'])
-    propagatedField = freeSpacePropagation(initialField, simX, simY, simParams['planeDist'], simParams['wavelength'])
+    freeSpaceProp = createFreeSpacePropTransferFunc(simX, simY, simParams['wavelength'])
+    propagatedField = freeSpaceProp(initialField, simParams['planeDist'], direction=-1)
     print(propagatedField)
 
 def modeFieldGenChecks():
@@ -150,5 +151,5 @@ def modeFieldGenChecks():
 
 if __name__ == "__main__":
     # objectChecks()
-    # freespacepropChecks()
-    modeFieldGenChecks()
+    freespacepropChecks()
+    #modeFieldGenChecks()
