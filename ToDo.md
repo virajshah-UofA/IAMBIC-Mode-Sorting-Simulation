@@ -2,8 +2,10 @@
 - Fix x and y coordinates on plotting (or elsewhere) in all classes
 - wavefront matching algo + plotting
 - Currently E-field in the guassian field is normalized so area under curve is 1, but does it need to change so that the max field (or max intensity) is normalized to 1?
-
+- save off masks and load them for simulating other modes (could serialize/pickle all the main objects like the Simulation object)
 - later: iterations, wavefront matching algo (in run verify gridsize is the same across the board),
 - simulation complete flag, transfer matrix, SVD (IL and MDL) calcs, graphing, save plot functions/decorator
 - add flags into mode and modesorter that every bit of info is filled in
 - **Add docstrings for functions, classes, etc. and publish to readthedocs**
+- look into parallelizing the wavefront matching algorithm (calculate phase differences for each mode seperately - is it memory or compute limited?)
+- https://towardsdatascience.com/multithreading-multiprocessing-python-180d0975ab29
