@@ -123,6 +123,9 @@ def modeFieldGenChecks():
     fwhm = 0.001
 
     field = generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm)
+    integration = np.trapz(np.trapz(abs(field), simY[:, 0], axis=0), simX[0, :], axis=0)
+    print(integration)
+    print(field)
 
     plt.figure()
     im = plt.imshow(np.absolute(field), cmap='magma')
@@ -134,6 +137,8 @@ def modeFieldGenChecks():
     fwhm = 0.0005
 
     field = generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm)
+    integration = np.trapz(np.trapz(abs(field), simY[:, 0], axis=0), simX[0, :], axis=0)
+    print(integration)
 
     plt.figure()
     im = plt.imshow(np.absolute(field), cmap='magma')

@@ -8,10 +8,3 @@ def generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm):
     # Not editing in place. Must return a new array and update upstream accordingly.
     field = gaussFunc(simX, simY).astype(dtype=np.cdouble)
     return field
-
-'''
-why is y coordinate backwards? for center point
-check the phase and amplitude - print them out individually and together
-check the plot for the phase
-check normalization - why is the number so high
-'''
