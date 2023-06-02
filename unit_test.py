@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from WFMSimulation import WFMSimulation
 from FreeSpaceProp import freeSpacePropagation
+from ModeFieldGenerator import generateGaussianModeFieldSpot
 import numpy as np
 
 def objectChecks():
@@ -110,6 +111,39 @@ def freespacepropChecks():
     propagatedField = freeSpacePropagation(initialField, simX, simY, simParams['planeDist'], simParams['wavelength'])
     print(propagatedField)
 
+def modeFieldGenChecks():
+    nPixX = 500
+    nPixY = 500
+    pixelSize = 10e-6
+    X = (np.arange(1, nPixY + 1) - (nPixY / 2 + 0.5)) * pixelSize
+    Y = (np.arange(1, nPixX + 1) - (nPixX / 2 + 0.5)) * pixelSize
+    simX, simY = np.meshgrid(X, Y)
+
+    centerPoint = (0,0)
+    fwhm = 0.001
+
+    field = generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm)
+
+    plt.figure()
+    im = plt.imshow(np.absolute(field), cmap='magma')
+    im.set_extent([np.amin(simX), np.amax(simX), np.amin(simY), np.amax(simY)])
+    plt.colorbar()
+    plt.show(block=False)
+
+    centerPoint = (-0.001, 0.0005)
+    fwhm = 0.0005
+
+    field = generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm)
+
+    plt.figure()
+    im = plt.imshow(np.absolute(field), cmap='magma')
+    im.set_extent([np.amin(simX), np.amax(simX), np.amin(simY), np.amax(simY)])
+    plt.colorbar()
+    plt.show(block=False)
+
+    plt.show() # keep plotting windows open
+
 if __name__ == "__main__":
     # objectChecks()
-    freespacepropChecks()
+    # freespacepropChecks()
+    modeFieldGenChecks()
