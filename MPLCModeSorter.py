@@ -26,7 +26,7 @@ class MPLCModeSorter:
         return self.planeDist
 
     def initializePhaseMasks(self):
-        self.phaseMasks = [np.ones(self.numPixels) for _ in range(self.numPhaseMasks)]
+        self.phaseMasks = [np.ones(self.numPixels, dtype=np.cdouble) for _ in range(self.numPhaseMasks)]
         return 0
 
     def getPhaseMasks(self):
@@ -39,7 +39,7 @@ class MPLCModeSorter:
     def plotPhaseMask(self, phaseMaskIndex, title=None, xlabel=None, ylabel=None):
         plt.figure()
         ax = plt.gca()
-        im = plt.imshow(self.phaseMasks[phaseMaskIndex], cmap='magma')
+        im = plt.imshow(np.angle(self.phaseMasks[phaseMaskIndex]), cmap='magma')
         im.set_extent([np.amin(self.simX), np.amax(self.simX), np.amin(self.simY), np.amax(self.simY)])
         plt.title("Phase Mask {} (count from 0)".format(phaseMaskIndex)) if not title else plt.title(title)
         plt.xlabel("X [m]") if not xlabel else plt.xlabel(xlabel)

@@ -1,6 +1,7 @@
 # To Do List
 - Fix x and y coordinates on plotting (or elsewhere) in all classes
 - wavefront matching algo + plotting
+- look into plotting phase masks, might need to raise to exponent or something similar
 - Currently E-field in the guassian field is normalized so area under curve is 1, but does it need to change so that the max field (or max intensity) is normalized to 1?
 - save off masks and load them for simulating other modes (could serialize/pickle all the main objects like the Simulation object)
 - later: iterations, wavefront matching algo (in run verify gridsize is the same across the board),

@@ -80,9 +80,10 @@ def objectChecks():
     modeSorter.plotPhaseMask(0, title="Phase Mask 0", xlabel="X", ylabel="Y")
     print(modeSorter.getPhaseMasks()[0])
 
+    counter = 1
     for x in range(numPixels[0]):
         for y in range(numPixels[1]):
-            phaseMask1[x][y] += 3.14/counter
+            phaseMask1[x][y] += complex(0, 3.14/counter)
             counter += 1
     modeSorter.updatePhaseMasks([phaseMask1] + phaseMasks[1:]) # unncessary here because array edited in place, but recommended to do to ensure array change has propagated
     wfs.updateMPLCModeSorter(modeSorter) # unncessary here because array edited in place, but recommended to do to ensure array change has propagated
@@ -150,6 +151,6 @@ def modeFieldGenChecks():
     plt.show() # keep plotting windows open
 
 if __name__ == "__main__":
-    # objectChecks()
+    objectChecks()
     freespacepropChecks()
-    #modeFieldGenChecks()
+    modeFieldGenChecks()
