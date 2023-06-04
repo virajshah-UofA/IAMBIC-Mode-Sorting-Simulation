@@ -7,4 +7,8 @@ def generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm):
 
     # Not editing in place. Must return a new array and update upstream accordingly.
     field = gaussFunc(simX, simY).astype(dtype=np.cdouble)
+    field = field/np.sqrt(np.sum(np.abs(field)**2)) # normalize intensity to 1
     return field
+
+def createHadamardModes(numPixels):
+    pass
