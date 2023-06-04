@@ -17,12 +17,12 @@ def createFreeSpacePropTransferFunc(simX, simY, wavelength):
 
     tfCoef1 = -1*complex(0,1)*2*np.pi*np.sqrt(wavelength**-2 - V_x**2 - V_y**2)
 
-    def freeSpaceProp(field, dz, direction=1):
+    def freeSpaceProp(field, dz, direction=0):
         H0 = np.exp(tfCoef1 * dz)
 
-        if direction==1:
+        if direction==0: # "Forward"
             H = H0
-        elif direction==-1:
+        elif direction==1: # "Backward"
             H = np.conj(H0)
         F = np.fft.fftshift(np.fft.fft2(np.fft.fftshift(field)))
         F = F * H  # element-wise multiplication

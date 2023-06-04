@@ -29,8 +29,15 @@ class MPLCModeSorter:
         self.phaseMasks = [np.ones(self.numPixels, dtype=np.cdouble) for _ in range(self.numPhaseMasks)]
         return 0
 
+    def getPhaseMask(self, phaseMaskIdx):
+        return self.phaseMasks[phaseMaskIdx]
+
     def getPhaseMasks(self):
         return self.phaseMasks
+
+    def updatePhaseMask(self, phaseMaskIdx, phaseMask):
+        self.phaseMasks[phaseMaskIdx] = phaseMask
+        return 0
 
     def updatePhaseMasks(self, phaseMasks):
         self.phaseMasks = phaseMasks

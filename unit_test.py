@@ -12,7 +12,8 @@ def objectChecks():
                  'numPixels': (4, 7),
                  'pixelSize': 10e-6,
                  'numPhaseMasks': 3,
-                 'planeDist': 25.4e-3}
+                 'planeDist': 25.4e-3,
+                 'numIterations': 50}
     wfs = WFMSimulation(**simParams)
     print(wfs.getSimParams())
     simX, simY = wfs.getXYCoords()
@@ -104,13 +105,14 @@ def freespacepropChecks():
                  'numPixels': (4, 7),
                  'pixelSize': 10e-6,
                  'numPhaseMasks': 3,
-                 'planeDist': 25.4e-3}
+                 'planeDist': 25.4e-3,
+                 'numIterations': 50}
     wfs = WFMSimulation(**simParams)
     simX, simY = wfs.getXYCoords()
 
     initialField = np.ones(simParams['numPixels'])
     freeSpaceProp = createFreeSpacePropTransferFunc(simX, simY, simParams['wavelength'])
-    propagatedField = freeSpaceProp(initialField, simParams['planeDist'], direction=-1)
+    propagatedField = freeSpaceProp(initialField, simParams['planeDist'], direction=1)
     print(propagatedField)
 
 def modeFieldGenChecks():
@@ -150,7 +152,22 @@ def modeFieldGenChecks():
 
     plt.show() # keep plotting windows open
 
+def runSimulationChecks():
+    print("------- Testing the WFM Algorithm -------")
+    print('')
+    simParams = {'wavelength': 1550e-9,
+                 'numModes': 5,
+                 'numPixels': (4, 7),
+                 'pixelSize': 10e-6,
+                 'numPhaseMasks': 3,
+                 'planeDist': 25.4e-3,
+                 'numIterations': 50}
+    wfs = WFMSimulation(**simParams)
+    wfs.runWFMAlgo()
+
+
 if __name__ == "__main__":
-    objectChecks()
-    freespacepropChecks()
-    modeFieldGenChecks()
+    # objectChecks()
+    # freespacepropChecks()
+    # modeFieldGenChecks()
+    runSimulationChecks()

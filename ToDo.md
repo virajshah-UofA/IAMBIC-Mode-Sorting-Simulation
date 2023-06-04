@@ -1,12 +1,18 @@
 # To Do List
-- Fix x and y coordinates on plotting (or elsewhere) in all classes
-- wavefront matching algo + plotting
-- look into plotting phase masks, might need to raise to exponent or something similar
-- Currently E-field in the guassian field is normalized so area under curve is 1, but does it need to change so that the max field (or max intensity) is normalized to 1?
-- save off masks and load them for simulating other modes (could serialize/pickle all the main objects like the Simulation object)
-- later: iterations, wavefront matching algo (in run verify gridsize is the same across the board),
-- simulation complete flag, transfer matrix, SVD (IL and MDL) calcs, graphing, save plot functions/decorator
-- add flags into mode and modesorter that every bit of info is filled in
+- looking into implementation and plotting of fwbwcoupling
+- test wavefront algo against Joel Carpenter's in a final runSimulationExample file (serialize/pickle simulation object?)
 - **Add docstrings for functions, classes, etc. and publish to readthedocs**
+-
+- plotting phase masks - add in scale contraint on color bar for [-pi, pi]
+- add in plotting functionality every so often for fwbwcoupling, add in plotting for coupling matrix, phase masks, start and stop modes and optional flags and add into simParams
+- look at and implement fwbwcoupling variable in updateMask func or ideally outside in each iteration loop (I think Joel might have it incorrect taking absolute value after summing across dMask) and adding it to the plotting loop
+- look into phase normalization (if needed, or can you just renormalize the fields?)
+- Fix x and y coordinates on plotting (or elsewhere) in all classes
+- Currently, E-field in the guassian field is normalized so area under curve is 1, but does it need to change so that the max field (or max intensity) is normalized to 1?
+- 
+- Error handling and error messages 
+- save off masks and load them for simulating other modes (could serialize/pickle all the main objects like the Simulation object)
+- wavefront matching algo (in run verify gridsize is the same across the board), simulation complete flag, save plot functions/decorator
+- add flags into mode and modesorter that every bit of info is filled in
 - look into parallelizing the wavefront matching algorithm (calculate phase differences for each mode seperately - is it memory or compute limited?)
-- https://towardsdatascience.com/multithreading-multiprocessing-python-180d0975ab29
+  - https://towardsdatascience.com/multithreading-multiprocessing-python-180d0975ab29
