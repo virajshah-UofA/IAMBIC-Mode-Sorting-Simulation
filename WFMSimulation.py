@@ -44,6 +44,12 @@ class WFMSimulation:
     def getSimParams(self):
         return self.simParams
 
+    def getNumPixels(self):
+        return self.numPixels
+
+    def getPixelSize(self):
+        return self.pixelSize
+
     def getXYCoords(self):
         return self.simX, self.simY
 

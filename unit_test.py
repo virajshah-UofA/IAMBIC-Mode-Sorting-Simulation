@@ -168,6 +168,6 @@ def runSimulationChecks():
 
 if __name__ == "__main__":
     # objectChecks()
-    # freespacepropChecks()
+    freespacepropChecks()
     # modeFieldGenChecks()
-    runSimulationChecks()
+    # runSimulationChecks()
