@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from WFMSimulation import WFMSimulation
 from FreeSpaceProp import createFreeSpacePropTransferFunc
-from ModeFieldGenerator import generateGaussianModeFieldSpot
+from ModeFieldGenerator import createGaussianModeField
 import numpy as np
 
 def objectChecks():
@@ -126,7 +126,7 @@ def modeFieldGenChecks():
     centerPoint = (0,0)
     fwhm = 0.001
 
-    field = generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm)
+    field = createGaussianModeField(centerPoint, simX, simY, fwhm)
     integration = np.trapz(np.trapz(abs(field), simY[:, 0], axis=0), simX[0, :], axis=0)
     print(integration)
     print(field)
@@ -140,7 +140,7 @@ def modeFieldGenChecks():
     centerPoint = (-0.001, 0.0005)
     fwhm = 0.0005
 
-    field = generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm)
+    field = createGaussianModeField(centerPoint, simX, simY, fwhm)
     integration = np.trapz(np.trapz(abs(field), simY[:, 0], axis=0), simX[0, :], axis=0)
     print(integration)
 

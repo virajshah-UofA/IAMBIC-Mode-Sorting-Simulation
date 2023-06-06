@@ -1,6 +1,6 @@
 import numpy as np
 
-def generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm):
+def createGaussianModeField(centerPoint, simX, simY, fwhm):
     centerX, centerY = centerPoint
     sigma = fwhm/(2*np.sqrt(2*np.log(2)))
     gaussFunc = lambda x, y : (1/(2 * np.pi * sigma**2)) * np.exp(-1 * ((x - centerX)**2 + (y - centerY)**2) / (2 * sigma**2))
@@ -10,7 +10,7 @@ def generateGaussianModeFieldSpot(centerPoint, simX, simY, fwhm):
     field /= np.sqrt(np.sum(np.abs(field)**2)) # normalize intensity to 1
     return field
 
-def createHadamardModes(numPixels):
+def createHadamardModeFields(numPixels):
     hMode1 = np.ones(numPixels, dtype=np.cdouble)
     hMode2 = np.ones(numPixels, dtype=np.cdouble)
     Nx = numPixels[0]

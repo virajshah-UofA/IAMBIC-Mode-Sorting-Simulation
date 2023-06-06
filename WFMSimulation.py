@@ -56,9 +56,11 @@ class WFMSimulation:
     def getInOutModes(self):
         return self.inModes, self.outModes
 
-    def updateInOutModes(self, inModes, outModes):
-        self.inModes = inModes
-        self.outModes = outModes
+    def updateInOutModes(self, inModes=None, outModes=None):
+        if inModes:
+            self.inModes = inModes
+        if outModes:
+            self.outModes = outModes
         return 0
 
     def getMPLCModeSorter(self):
@@ -67,6 +69,9 @@ class WFMSimulation:
     def updateMPLCModeSorter(self, modeSorter):
         self.modeSorter = modeSorter
         return 0
+
+    def getCouplingMatrix(self):
+        return self.couplingMatrix
 
     # ------- Running the wavefront matching algorithm -------
 
@@ -97,8 +102,8 @@ class WFMSimulation:
         # Run the final analyses (e.g., coupling matrix, losses)
         self._calculateCouplingMatrix()
         self._calculateLoss()
-        print("The insertion loss of the mode sorter: {0:.2f} dB".format(self.insertionLoss))
-        print("The mode dependent loss of the mode sorter: {0:.2f} dB".format(self.modeDependentLoss))
+        print("The insertion loss of the mode sorter: {0:.4f} dB".format(self.insertionLoss))
+        print("The mode dependent loss of the mode sorter: {0:.4f} dB".format(self.modeDependentLoss))
         return 0
 
     def _loadInOutModes(self):
